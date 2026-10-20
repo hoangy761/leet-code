@@ -1,3 +1,9 @@
+use std::{sync::Arc, thread};
+
 fn main() {
-    println!("Hello, world!");
+    let value = Arc::new(10);
+
+    thread::spawn(move || {
+        println!("{value}");
+    });
 }
