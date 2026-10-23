@@ -1034,6 +1034,10 @@ name = "remove-element"
 version = "0.1.0"
 
 [[package]]
+name = "remove-linked-list-elements"
+version = "0.1.0"
+
+[[package]]
 name = "reqwest"
 version = "0.13.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
