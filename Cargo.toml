@@ -5,7 +5,7 @@ edition = "2024"
 
 [workspace]
 resolver = "3"
-members = ["merge-two-sorted-lists", "remove-duplicates-from-sorted-array","remove-element", "reverse-lined-list", "valid-parentheses"]
+members = ["merge-two-sorted-lists", "remove-duplicates-from-sorted-array", "remove-duplicates-from-sorted-list","remove-element", "reverse-lined-list", "valid-parentheses"]
 
 [dependencies]
 tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
