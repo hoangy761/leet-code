@@ -15,20 +15,22 @@ struct Solution;
 
 impl Solution {
     pub fn middle_node(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        let mut head1 = head.clone();
-        let cursor = &mut head1;
-        let mut len = 0;
-        while cursor.is_some() {
-            *cursor = cursor.as_mut().unwrap().next.take();
-            len += 1;
+        let mut slow = head.as_ref();
+        let mut fast = head.as_ref();
+
+        while fast.is_some() {
+            if slow.is_none()
+                || slow.as_ref().unwrap().next.is_none()
+                || fast.as_ref().unwrap().next.is_none()
+            {
+                break;
+            }
+
+            slow = slow.as_ref().unwrap().next.as_ref();
+            fast = fast.as_ref().unwrap().next.as_ref().unwrap().next.as_ref();
         }
-        let midle = len / 2;
-        let mut head2 = head.clone();
-        let cursor2 = &mut head2;
-        for _index in 0..midle {
-            *cursor2 = cursor2.as_mut().unwrap().next.take();
-        }
-        head2
+
+        slow.cloned()
     }
 }
 
