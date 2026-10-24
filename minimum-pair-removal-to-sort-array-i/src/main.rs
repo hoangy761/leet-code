@@ -5,54 +5,39 @@ impl Solution {
         let mut nums = nums;
 
         let mut sum_times = 0;
-        let mut need_loop = true;
         if nums.len() < 2 {
             return 0;
         }
+        let mut non_descreasing = false;
 
-        while need_loop {
-            need_loop = false;
+        while non_descreasing == false {
+            non_descreasing = true;
+
             if nums.len() == 2 {
                 if nums[0] > nums[1] {
                     sum_times += 1;
                 }
                 break;
             }
-            if nums.len() == 4 {
-                println!("hi");
-            }
             let mut min = nums[0] + nums[1];
-            let mut index_to_remove = 0;
+            let mut index_to_remove = 1;
 
-            let mut min_compare = nums[0] + nums[1];
-            let mut index_to_remove_compare = 0;
             for index in 1..(nums.len()) {
                 let sum_adjacent_pair = nums[index] + nums[index - 1];
                 if nums[index] < nums[index - 1] {
-                    min_compare = sum_adjacent_pair;
-                    need_loop = true;
-                    index_to_remove_compare = index;
+                    non_descreasing = false;
                 }
-                if sum_adjacent_pair <= min {
-                    if index == 1 {
-                        continue;
-                    }
+                if sum_adjacent_pair < min {
                     min = sum_adjacent_pair;
-                    need_loop = true;
                     index_to_remove = index;
                 }
             }
-            if need_loop {
-                if index_to_remove > 0 {
-                    nums[index_to_remove - 1] = min;
-                    nums.remove(index_to_remove);
-                    sum_times += 1;
-                } else if index_to_remove_compare > 0 {
-                    nums[index_to_remove_compare - 1] = min_compare;
-                    nums.remove(index_to_remove_compare);
-                    sum_times += 1;
-                }
+            if non_descreasing {
+                break;
             }
+            nums[index_to_remove - 1] = min;
+            nums.remove(index_to_remove);
+            sum_times += 1;
         }
         sum_times
     }
@@ -60,5 +45,10 @@ impl Solution {
 
 fn main() {
     let rs = Solution::minimum_pair_removal(vec![2, 2, -1, 3, -2, 2, 1, 1, 1, 0, -1]);
+    // let rs = Solution::minimum_pair_removal(vec![1, 1, 4, 4, 2, -4, -1]);
+    // let rs = Solution::minimum_pair_removal(vec![1, 2, 2]);
+
+    // let rs = Solution::minimum_pair_removal(vec![5, 2, 3, 1]);
+
     println!("Hello, world!:: {}", rs);
 }
