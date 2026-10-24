@@ -5,7 +5,7 @@ edition = "2024"
 
 [workspace]
 resolver = "3"
-members = ["merge-two-sorted-lists", "middle-of-the-linked-list", "palindrome-linked-list", "remove-duplicates-from-sorted-array", "remove-duplicates-from-sorted-list","remove-element", "remove-linked-list-elements", "reverse-lined-list", "valid-parentheses"]
+members = ["convert-binary-number-in-a-linked-list-to-integer","merge-two-sorted-lists", "middle-of-the-linked-list", "palindrome-linked-list", "remove-duplicates-from-sorted-array", "remove-duplicates-from-sorted-list","remove-element", "remove-linked-list-elements", "reverse-lined-list", "valid-parentheses"]
 
 [dependencies]
 tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
