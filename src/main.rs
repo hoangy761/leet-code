@@ -1,10 +1,13 @@
 use scraper::{Html, Selector};
+use tokio::runtime::Runtime;
 
-#[tokio::main]
-async fn main() {
-    let title = page_title("https://www.rust-lang.org").await;
+fn main() {
+    let rt = Runtime::new().unwrap();
+    rt.block_on(async {
+        let title = page_title("https://www.rust-lang.org").await;
 
-    println!("title:::{}", title.unwrap().trim());
+        println!("title:::{}", title.unwrap().trim());
+    })
 }
 
 async fn page_title(url: &str) -> Option<String> {
